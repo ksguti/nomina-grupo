@@ -1,0 +1,97 @@
+﻿@model AplicacionNomina.Models.RegistroViewModel
+@{
+    ViewBag.Title = "Registrarse";
+}
+@section Styles {
+    <link href="~/Content/Login.css" rel="stylesheet" />
+}
+
+@using (Html.BeginForm("Registrarse", "Login", FormMethod.Post))
+{
+    <h2>Registrarse</h2>
+
+    <div class="form-grid">
+        <div>
+            @Html.LabelFor(m => m.Cedula)
+            @Html.TextBoxFor(m => m.Cedula)
+            @Html.ValidationMessageFor(m => m.Cedula)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.Nombres)
+            @Html.TextBoxFor(m => m.Nombres)
+            @Html.ValidationMessageFor(m => m.Nombres)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.Apellidos)
+            @Html.TextBoxFor(m => m.Apellidos)
+            @Html.ValidationMessageFor(m => m.Apellidos)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.FechaNacimiento)
+            @Html.TextBoxFor(m => m.FechaNacimiento, "{0:yyyy-MM-dd}", new { type = "date" })
+            @Html.ValidationMessageFor(m => m.FechaNacimiento)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.FechaContratacion)
+            @Html.TextBoxFor(m => m.FechaContratacion, "{0:yyyy-MM-dd}", new { type = "date" })
+            @Html.ValidationMessageFor(m => m.FechaContratacion)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.Correo)
+            @Html.TextBoxFor(m => m.Correo, new { type = "email" })
+            @Html.ValidationMessageFor(m => m.Correo)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.Usuario)
+            @Html.TextBoxFor(m => m.Usuario)
+            @Html.ValidationMessageFor(m => m.Usuario)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.Clave)
+            @Html.PasswordFor(m => m.Clave)
+            @Html.ValidationMessageFor(m => m.Clave)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.Genero)
+            @Html.DropDownListFor(m => m.Genero, new SelectList(new[] {
+                new { Value = "M", Text = "Masculino" },
+                new { Value = "F", Text = "Femenino" }
+            }, "Value", "Text"), "Selecciona una opción", new { @class = "select-genero" })
+            @Html.ValidationMessageFor(m => m.Genero)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.Rol)
+            @Html.DropDownListFor(m => m.Rol, new SelectList(new[] {
+                new { Value = "RRHH", Text = "RRHH" },
+                new { Value = "admin", Text = "Administrador" }
+            }, "Value", "Text"), "Selecciona un rol", new { @class = "select-genero" })
+            @Html.ValidationMessageFor(m => m.Rol)
+        </div>
+
+    </div>
+
+    <button type="submit">Registrarse</button>
+    @Html.ActionLink("Iniciar Sesión", "Autenticar", "Login")
+    if (ViewBag.Error != null)
+    {
+        <div class="error-message">
+            @ViewBag.Error
+        </div>
+    }
+}
+
+
+
+
+
+
+
